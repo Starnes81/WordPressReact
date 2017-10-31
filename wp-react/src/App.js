@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      posts: []
+    }
+  }
+
+  componentDidMount() {
+    let dataURL = "http://blackonair.com/wp-json/wp/v2/posts";
+    fetch(dataURL)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          posts: res
+        })
+      })
+  }
   render() {
+    let posts = this.state.posts.map((post, index) => {
+      return <div key={index}>
+      <h2> {post.title.rendered} </h2>
+      </div>
+    });
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <h1>My React site powered by WordPress</h1>
+          {posts}
       </div>
-    );
+    )
   }
 }
 
