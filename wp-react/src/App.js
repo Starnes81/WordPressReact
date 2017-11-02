@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let dataURL = "http://blackonair.com/wp-json/wp/v2/posts";
+    let dataURL = "http://blackonair.com/wp-json/wp/v2/posts?categories=18";
     fetch(dataURL)
       .then(res => res.json())
       .then(res => {
@@ -20,19 +20,24 @@ class App extends Component {
         })
       })
   }
+
   render() {
+
+    let pic = this.state.posts.link
     let posts = this.state.posts.map((post, index) => {
-      return <div key={index}>
-      <h2> {post.title.rendered} </h2>
-      </div>
-    });
-    return (
-      <div className="App">
-          <h1>My React site powered by WordPress</h1>
-          {posts}
-      </div>
-    )
-  }
+          return <div key={index}>
+                  <h2> {post.title.rendered} </h2>
+
+              </div>
+
+            });
+            return (
+              <div className="App">
+                  <h1>My React site powered by WordPress</h1>
+                  {posts}
+              </div>
+            )
+      }
 }
 
 export default App;
