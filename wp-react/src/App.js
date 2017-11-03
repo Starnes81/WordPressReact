@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 
 
 
@@ -25,8 +26,9 @@ class App extends Component {
 
     let pic = this.state.posts.link
     let posts = this.state.posts.map((post, index) => {
-          return <div key={index}>
+          return <div key={index} className="post-container">
                   <h2> {post.title.rendered} </h2>
+                  <p> {post.excerpt.rendered}</p>
 
               </div>
 
