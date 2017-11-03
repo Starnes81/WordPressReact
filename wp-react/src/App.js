@@ -24,11 +24,10 @@ class App extends Component {
 
   render() {
 
-    let pic = this.state.posts.link
     let posts = this.state.posts.map((post, index) => {
           return <div key={index} className="post-container">
                   <h2> {post.title.rendered} </h2>
-                  <p> {post.excerpt.rendered}</p>
+                  {post.content.rendered}
 
               </div>
 
